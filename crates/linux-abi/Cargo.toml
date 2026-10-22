@@ -1,0 +1,11 @@
+[package]
+name = "linux-abi"
+description = "Layer 2: run x86-64 Linux programs on macOS (ELF loading, Linux syscalls on top of Darwin)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true
+guest-mem.workspace = true
+x86-cpu.workspace = true

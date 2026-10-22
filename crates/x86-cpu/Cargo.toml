@@ -1,0 +1,9 @@
+[package]
+name = "x86-cpu"
+description = "Layer 1: x86-64 decoder, CPU state and execution engines"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+guest-mem.workspace = true

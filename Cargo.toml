@@ -1,0 +1,27 @@
+[workspace]
+resolver = "2"
+members = ["crates/guest-mem", "crates/x86-cpu", "crates/linux-abi", "crates/xrun"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+libc = "0.2"
+guest-mem = { path = "crates/guest-mem" }
+x86-cpu = { path = "crates/x86-cpu" }
+linux-abi = { path = "crates/linux-abi" }
+
+[profile.release]
+debug = 1
+codegen-units = 1
+lto = "thin"
+panic = "abort"
+
+# The interpreter is unusably slow without optimisation; keep tests fast too.
+[profile.test]
+opt-level = 2
+
+[profile.dev]
+opt-level = 1

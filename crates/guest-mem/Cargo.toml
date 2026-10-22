@@ -1,0 +1,9 @@
+[package]
+name = "guest-mem"
+description = "Guest (x86-64) address space backed by a single host reservation"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true

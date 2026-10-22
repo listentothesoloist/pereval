@@ -1,0 +1,11 @@
+[package]
+name = "xrun"
+description = "Run x86-64 Linux programs on Apple Silicon"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true
+x86-cpu.workspace = true
+linux-abi.workspace = true
