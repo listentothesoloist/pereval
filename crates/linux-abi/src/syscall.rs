@@ -235,7 +235,7 @@ impl Process {
             },
             _ => {
                 if !self.opts.strace {
-                    eprintln!("xrun: unimplemented syscall {} ({nr}), returning -ENOSYS", name(nr));
+                    eprintln!("pereval: unimplemented syscall {} ({nr}), returning -ENOSYS", name(nr));
                 }
                 -ENOSYS
             }
@@ -364,7 +364,7 @@ impl Process {
         if unsafe { libc::uname(&mut u) } == 0 {
             host = unsafe { std::ffi::CStr::from_ptr(u.nodename.as_ptr()) }.to_string_lossy().into_owned();
         }
-        let fields = ["Linux", &host, "6.8.0-xrun", "#1 SMP PREEMPT_DYNAMIC", "x86_64", "(none)"];
+        let fields = ["Linux", &host, "6.8.0-pereval", "#1 SMP PREEMPT_DYNAMIC", "x86_64", "(none)"];
         for (k, f) in fields.iter().enumerate() {
             let mut b = [0u8; 65];
             let n = f.len().min(64);

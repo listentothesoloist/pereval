@@ -1,6 +1,6 @@
-# emulation
+# pereval
 
-Свой стек для запуска x86-64 программ на Mac с Apple Silicon: трансляция процессора,
+«Перевал» — свой стек для запуска x86-64 программ на Mac с Apple Silicon: трансляция процессора,
 слой системы, Windows API, Direct3D 11 → Metal. Конечная цель — игры на
 Unreal Engine 5. Устройство — в [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
@@ -10,9 +10,9 @@ Unreal Engine 5. Устройство — в [docs/ARCHITECTURE.md](docs/ARCHITE
 
 ```sh
 cargo build --release
-./target/release/xrun tests/guest/bin/hello
-./target/release/xrun --stats tests/guest/bin/bench 8   # скорость интерпретатора
-./target/release/xrun --strace tests/guest/bin/args a b # трассировка системных вызовов
+./target/release/pereval tests/guest/bin/hello
+./target/release/pereval --stats tests/guest/bin/bench 8   # скорость интерпретатора
+./target/release/pereval --strace tests/guest/bin/args a b # трассировка системных вызовов
 cargo test                                              # всё, включая сверку с Rosetta 2
 ```
 
@@ -21,7 +21,7 @@ cargo test                                              # всё, включая
 | `guest-mem` | адресное пространство гостя |
 | `x86-cpu` | 1 — декодер, интерпретатор, (JIT) |
 | `linux-abi` | 2 — ELF, системные вызовы Linux на macOS |
-| `xrun` | командная строка |
+| `pereval` | командная строка |
 
 Гостевые программы для тестов лежат в `tests/guest` (исходники + собранные ELF);
 пересобрать их можно без Linux-машины скриптом `tests/guest/build.sh`.

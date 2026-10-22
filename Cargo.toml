@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/guest-mem", "crates/x86-cpu", "crates/linux-abi", "crates/xrun"]
+members = ["crates/guest-mem", "crates/x86-cpu", "crates/linux-abi", "crates/pereval"]
 
 [workspace.package]
 version = "0.1.0"

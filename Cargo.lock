@@ -25,17 +25,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "x86-cpu"
-version = "0.1.0"
-dependencies = [
- "guest-mem",
-]
-
-[[package]]
-name = "xrun"
+name = "pereval"
 version = "0.1.0"
 dependencies = [
  "libc",
  "linux-abi",
  "x86-cpu",
+]
+
+[[package]]
+name = "x86-cpu"
+version = "0.1.0"
+dependencies = [
+ "guest-mem",
 ]

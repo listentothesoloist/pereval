@@ -1,7 +1,7 @@
-//! `xrun` — run an x86-64 Linux executable on Apple Silicon.
+//! `pereval` — run an x86-64 Linux executable on Apple Silicon.
 //!
 //! ```text
-//! xrun [--strace] [--stats] [--clear-env] [--] program [args...]
+//! pereval [--strace] [--stats] [--clear-env] [--] program [args...]
 //! ```
 
 use std::os::unix::ffi::OsStrExt;
@@ -36,13 +36,13 @@ extern "C" fn on_fault(sig: i32, info: *mut libc::siginfo_t, _: *mut libc::c_voi
     // guest it is a Linux SIGSEGV (11) either way.
     let guest = addr >= base && addr < base + size;
     if guest {
-        put(b"xrun: guest killed by SIGSEGV: access to unmapped guest address 0x");
+        put(b"pereval: guest killed by SIGSEGV: access to unmapped guest address 0x");
         let g = addr - base;
         for k in (0..16).rev() {
             put(&[b"0123456789abcdef"[(g >> (4 * k)) & 15]]);
         }
     } else {
-        put(b"xrun: host fault (bug in the emulator)");
+        put(b"pereval: host fault (bug in the emulator)");
     }
     put(b"\n");
     unsafe {
@@ -62,7 +62,7 @@ fn install_fault_handler() {
 }
 
 fn usage() -> ExitCode {
-    eprintln!("usage: xrun [--strace] [--stats] [--clear-env] [--] program [args...]");
+    eprintln!("usage: pereval [--strace] [--stats] [--clear-env] [--] program [args...]");
     ExitCode::from(2)
 }
 
@@ -89,7 +89,7 @@ fn main() -> ExitCode {
     let exe = match std::fs::read(&path) {
         Ok(d) => d,
         Err(e) => {
-            eprintln!("xrun: {}: {e}", path.to_string_lossy());
+            eprintln!("pereval: {}: {e}", path.to_string_lossy());
             return ExitCode::from(127);
         }
     };
@@ -102,7 +102,7 @@ fn main() -> ExitCode {
     let mut proc = match Process::new(&exe, &argv, &envp, opts) {
         Ok(p) => p,
         Err(e) => {
-            eprintln!("xrun: {}: {e}", path.to_string_lossy());
+            eprintln!("pereval: {}: {e}", path.to_string_lossy());
             return ExitCode::from(126);
         }
     };
@@ -130,7 +130,7 @@ fn main() -> ExitCode {
         );
     }
     if let ExitStatus::Signaled(_, why) = &status {
-        eprintln!("xrun: guest killed by signal: {why}");
+        eprintln!("pereval: guest killed by signal: {why}");
     }
     ExitCode::from(status.code() as u8)
 }

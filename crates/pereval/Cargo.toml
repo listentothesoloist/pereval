@@ -1,5 +1,5 @@
 [package]
-name = "xrun"
+name = "pereval"
 description = "Run x86-64 Linux programs on Apple Silicon"
 version.workspace = true
 edition.workspace = true
