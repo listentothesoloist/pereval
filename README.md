@@ -1,6 +1,6 @@
 # pereval
 
-«Перевал» — свой стек для запуска x86-64 программ на Mac с Apple Silicon: трансляция процессора,
+«Перевал» — стек для запуска x86-64 программ на Mac с Apple Silicon: трансляция процессора,
 слой системы, Windows API, Direct3D 11 → Metal. Конечная цель — игры на
 Unreal Engine 5. Устройство — в [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
