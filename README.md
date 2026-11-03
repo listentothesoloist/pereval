@@ -4,7 +4,7 @@
 слой системы, Windows API, Direct3D 11 → Metal. Конечная цель — игры на
 Unreal Engine 5. Устройство — в [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-Пока что интерпретатор x86-64 запускает статические
+Интерпретатор x86-64 запускает статические
 программы для Linux x86-64. Итоги, замеры и решение «свой JIT или FEX» —
 в [docs/decisions/stage1.md](docs/decisions/stage1.md).
 
